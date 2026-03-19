@@ -1,0 +1,126 @@
+@import "tailwindcss";
+
+:root {
+  color-scheme: dark;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background:
+    radial-gradient(1200px 700px at 5% -10%, rgba(34, 211, 238, 0.12), transparent 60%),
+    radial-gradient(900px 600px at 100% 0%, rgba(59, 130, 246, 0.12), transparent 55%),
+    #040a16;
+  color: #e5e7eb;
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.ui-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(34, 211, 238, 0.45) transparent;
+}
+
+.ui-scrollbar::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+  background: transparent;
+}
+
+.ui-scrollbar::-webkit-scrollbar-thumb {
+  border-radius: 999px;
+  background: linear-gradient(180deg, rgba(34, 211, 238, 0.58), rgba(14, 116, 144, 0.65));
+  border: 1px solid rgba(8, 47, 73, 0.55);
+}
+
+.oauth-check-circle {
+  position: relative;
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 4rem;
+  height: 4rem;
+  border-radius: 9999px;
+  background: linear-gradient(160deg, #2d5a41 0%, #1b4332 55%, #0f2919 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+    0 4px 18px rgba(15, 41, 25, 0.45);
+}
+
+.oauth-check-icon {
+  position: relative;
+  width: 44px;
+  height: 40px;
+  flex-shrink: 0;
+  pointer-events: none;
+  transform: translate(0px, 10px);
+}
+
+.oauth-check-icon::before,
+.oauth-check-icon::after {
+  content: "";
+  position: absolute;
+  display: block;
+  width: 4px;
+  height: 0;
+  background: #e2e9e5;
+  transform-origin: left top;
+  border-radius: 2.5px;
+  transition: height 0.35s ease;
+}
+
+.oauth-check-icon::before {
+  top: 15px;
+  left: 5px;
+  transform: rotate(-45deg);
+}
+
+.oauth-check-icon::after {
+  top: 27px;
+  left: 17px;
+  transform: rotate(-135deg);
+  transition-delay: 0.35s;
+}
+
+.oauth-check-circle.oauth-check-circle--drawn .oauth-check-icon::before {
+  height: 16px;
+}
+
+.oauth-check-circle.oauth-check-circle--drawn .oauth-check-icon::after {
+  height: 38px;
+}
+
+/* 시뮬레이터: 잘못된 클릭 시 클릭 유도(잠시 하이라이트) */
+@keyframes sim-nudge-pulse {
+  0% {
+    box-shadow:
+      0 0 0 0 rgba(34, 211, 238, 0.75),
+      0 0 0 0 rgba(34, 211, 238, 0.35);
+    outline: 2px solid rgba(34, 211, 238, 0.95);
+    outline-offset: 2px;
+  }
+  35% {
+    box-shadow:
+      0 0 0 5px rgba(34, 211, 238, 0.35),
+      0 0 22px rgba(34, 211, 238, 0.22);
+    outline: 2px solid rgba(34, 211, 238, 1);
+    outline-offset: 3px;
+  }
+  100% {
+    box-shadow:
+      0 0 0 0 rgba(34, 211, 238, 0),
+      0 0 0 0 rgba(34, 211, 238, 0);
+    outline: 2px solid transparent;
+    outline-offset: 2px;
+  }
+}
+
+.sim-nudge-pulse {
+  animation: sim-nudge-pulse 1.35s ease-out forwards;
+  position: relative;
+  z-index: 1;
+}
